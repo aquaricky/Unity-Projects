@@ -16,7 +16,12 @@ public class PlayerControler : MonoBehaviour {
     public GameObject Shot;
     private float nextFire;
     public float fireRate;
+    private AudioSource audioSource;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void FixedUpdate () {
         
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -38,6 +43,7 @@ public class PlayerControler : MonoBehaviour {
         {
             nextFire = Time.time + fireRate;
             Instantiate(Shot, Spawn.position, Spawn.rotation);
+            audioSource.Play();
         }
     }
 }
